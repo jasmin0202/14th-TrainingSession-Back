@@ -1,0 +1,11 @@
+<a href="{%url 'blog:new'%}">새글 작성</a>
+{% for Post in Posts.all %}
+
+<h3>
+<a href="{% url 'blog:detail' Post.id %}">
+{{Post.title}}
+</a>
+</h3>
+{{Post.created_at}}
+
+{% endfor %}
