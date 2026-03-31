@@ -22,13 +22,13 @@ def create(request) :
     new_blog=form.save(commit=False)
     new_blog.save()
 
-    hashtags=request.POST['hashtags']
-    hashtag_list=hashtags.split(', ')
+    hashtags=request.POST['hashtags'] #form으로 입력받은 해시태그 저장
+    hashtag_list=hashtags.split(', ') # 쪼개서 list로 저장
 
-    for tag in hashtag_list:
-      tag = tag.strip()
+    for tag in hashtag_list: #리스트 돌면서 각각을 tag라는 이름으로 가져옴
+      tag = tag.strip() 
       new_hashtag = Hashtag.objects.get_or_create(hashtag=tag)
-      new_blog.hashtag.add(new_hashtag[0])
+      new_blog.hashtag.add(new_hashtag[0]) #블로그 객체의 해시태그에 추가
     return redirect('blog:detail', new_blog.id)
   return redirect('blog:home')
 
@@ -48,7 +48,7 @@ def update_post(request, post_id) :
   update_blog.save()
   return redirect('blog:home')
 
-#댓글 직접 작성에 대한 view 함수 (기능 추가 학습 필요)
+#댓글 직접 작성에 대한 view 함수 
 def add_comment(request, post_id):
   blog = get_object_or_404(Post, pk=post_id)
 
