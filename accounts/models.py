@@ -1,10 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
-class CustomUser(AbstractUser):
-  nickname=models.CharField(max_length=100)
-  university=models.CharField(max_length=50)
-  location=models.CharField(max_length=200)
-
-
-# Create your models here.
+class User(AbstractUser):
+    email = models.EmailField(max_length=100, unique=True) #이메일이 중복되지 않도록!
