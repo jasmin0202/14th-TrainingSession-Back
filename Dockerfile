@@ -17,5 +17,5 @@ COPY . .
 EXPOSE 8000
 
 # 7. 컨테이너가 켜질 때 실행될 최종 명령어를 입력합니다.
-# ★주의★ IP를 127.0.0.1이 아닌 0.0.0.0으로 열어야 외부 PC 접속이 가능합니다!
 CMD ["sh", "-c", "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"]
+
