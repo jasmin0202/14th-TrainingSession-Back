@@ -1,0 +1,30 @@
+name: Django Docker Image Build & Push
+
+# 1. main 브랜치에 push가 발생할 때 이 자동화를 실행합니다.
+on:
+  push:
+    branches: [ "gyk/test" ]
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest  # GitHub이 제공하는 가상 클라우드 컴퓨터에서 실행
+
+    steps:
+      # 1) 내 GitHub 소스 코드를 가상 환경으로 가져오기
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # 2) Docker Hub에 로그인하기
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      # 3) 도커 이미지 빌드하고 Docker Hub로 업로드(Push)하기
+      - name: Build and Push Docker Image
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/my-django-app:latest
