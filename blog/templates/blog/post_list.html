@@ -1,0 +1,14 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}My Blog{% endblock %}
+
+{% block content %}
+    {% for post in posts %}
+        <article class="post">
+            <h2><a href="{% url 'blog:post_detail' post.pk %}">{{ post.title }}</a></h2>
+            <div class="meta">{{ post.created_at|date:"Y-m-d H:i" }}</div>
+        </article>
+    {% empty %}
+        <p>아직 작성된 글이 없습니다.</p>
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}My Blog{% endblock %}</title>
+    <style>
+        body {
+            font-family: -apple-system, "Segoe UI", "Malgun Gothic", sans-serif;
+            max-width: 720px;
+            margin: 40px auto;
+            padding: 0 16px;
+            color: #222;
+        }
+        header {
+            border-bottom: 2px solid #222;
+            margin-bottom: 24px;
+            padding-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header a {
+            text-decoration: none;
+            color: #222;
+        }
+        header h1 a {
+            font-size: 1.5rem;
+        }
+        .post {
+            border-bottom: 1px solid #ddd;
+            padding: 16px 0;
+        }
+        .post h2 a {
+            color: #222;
+            text-decoration: none;
+        }
+        .meta {
+            color: #888;
+            font-size: 0.85rem;
+        }
+        .content {
+            white-space: pre-line;
+            line-height: 1.6;
+        }
+        .btn {
+            display: inline-block;
+            padding: 6px 14px;
+            background: #222;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+        .form-control {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 12px;
+            box-sizing: border-box;
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1><a href="{% url 'blog:post_list' %}">My Blog</a></h1>
+    <a href="{% url 'blog:post_create' %}" class="btn">글쓰기</a>
+</header>
+<main>
+    {% block content %}{% endblock %}
+</main>
+</body>
+</html>
